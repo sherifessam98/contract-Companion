@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+python-multipart       # for file uploads
+langchain              # our RAG toolkit
+faiss-cpu              # vector store
+sentence-transformers  # local embeddings
+transformers           # local LLM
+torch                  # backend for transformers
+python-dotenv          # load env vars if needed
+pymupdf                # PDF parsing
+python-docx            # DOCX parsing
+
