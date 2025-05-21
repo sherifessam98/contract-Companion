@@ -13,7 +13,7 @@ from langchain.llms import HuggingFacePipeline
 from transformers import pipeline
 
 # Helper to load the FAISS index + embeddings
-from app.vector_store import load_vector_store
+from vector_store import load_vector_store
 
 
 def ask_question(

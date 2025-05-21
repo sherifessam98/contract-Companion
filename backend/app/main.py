@@ -2,9 +2,9 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import os
 # Import  RAG modules
-from app.document_loader import load_document, chunk_text
-from app.ingest import ingest_document
-from app.rag_chain import ask_question
+from document_loader import load_document, chunk_text
+from ingest import ingest_document
+from rag_chain import ask_question
 
 
 app = FastAPI(title="Smart Support Assistant API")

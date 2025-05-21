@@ -18,7 +18,6 @@ export default function FileUploader({onUploaded}){
             return;
             }
 
-        }
         setStatus("Uploading..");
         try {
           const res = await uploadFile(file);
@@ -37,5 +36,6 @@ export default function FileUploader({onUploaded}){
                 <button type="submit">Upload Document</button>
             </form>
             <p>{status}</p>
+        </div>
         );
     }

@@ -12,8 +12,9 @@ def load_document(filepath:str) -> str:
     Supports .txt, .pdf, and .docx based on file extension.
     """
 
-
-    ext = os.path.splitext(filepath)[1].lower
+    print(f"load_document received filepath: {filepath} (type: {type(filepath)})")
+    ext = os.path.splitext(filepath)[1].lower()
+    print(f"Extracted extension before lower(): {ext} (type: {type(ext)})")
 
     if ext == ".txt":
         # Simple text file: reading and returning all contents
