@@ -33,23 +33,30 @@ async def upload_doc(file: UploadFile=File(...)):
     3) Load, chunk, embed, and index it
     """
     # saving uploaded file
-    file_path  = os.path.join(UPLOAD_DIR, file.filename)
+    save_path = os.path.join("storage", "uploads", file.filename)
+    absolute_path = os.path.abspath(save_path)
+
+    print(f"📁 Saving file to: {absolute_path}")
     try:
-        with open (file_path ,"wb") as f:
+        with open (absolute_path ,"wb") as f:
             f.write(await file.read())
+            print(f"🧾 File saved at: {absolute_path}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"failed to save file:{e}")
 
+    print("🔍 Calling load_document()...")
+
     # Loading full text from the saved document
     try:
-        text = load_document(file_path)
+        text = load_document(absolute_path)
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
-
+    print("✅ load_document success!")
     chunks = chunk_text(text)
     # Embeds and index the chunks in FAISS
     try:
         ingest_document(chunks, persist_path=FAISS_DIR)
+        print("📦 Ingestion completed")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ingestion failed: {e}")
 
